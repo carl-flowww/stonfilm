@@ -1,0 +1,88 @@
+/* ==========================================
+   Layout
+   ========================================== */
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+}
+
+/* ===== Container ===== */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--sp-2);
+}
+
+.container-narrow {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--sp-2);
+}
+
+/* ===== Section Spacing ===== */
+section {
+    padding: var(--section-padding-top) 0 var(--section-padding-bottom);
+}
+
+/* ===== Flex Utilities ===== */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-1 {
+    gap: var(--sp-1);
+}
+
+.gap-2 {
+    gap: var(--sp-2);
+}
+
+.gap-3 {
+    gap: var(--sp-3);
+}
+
+/* ===== Grid Utilities ===== */
+.grid {
+    display: grid;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--sp-2);
+    }
+
+    .container-narrow {
+        padding: 0 var(--sp-2);
+    }
+
+    section {
+        padding: var(--sp-4) 0;
+    }
+
+    .grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STONFILM - A Studio That Creates Powerful Experiences with AI-powered VFX technology">
+    <title>STONFILM - Where Creativity Meets Innovation</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/the-bold-font" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/effects.css">
+    <link rel="stylesheet" href="css/sections/topbar.css">
+    <link rel="stylesheet" href="css/sections/about.css">
+    <link rel="stylesheet" href="css/sections/projects.css">
+    <link rel="stylesheet" href="css/sections/clients.css">
+    <link rel="stylesheet" href="css/sections/contact.css">
+    <link rel="stylesheet" href="css/sections/footer.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- TopBar Navigation -->
+    <header id="topbar" class="topbar">
+        <div class="container">
+            <div class="topbar-content">
+                <!-- Logo -->
+                <a href="#" class="logo">STONFILM.</a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav nav-desktop">
+                    <a href="#about" class="nav-link">About.</a>
+                    <a href="#projects" class="nav-link">Projects.</a>
+                    <a href="#contact" class="nav-link nav-link-cta">Contact us →</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Sidebar -->
+        <div class="mobile-sidebar">
+            <!-- Close Button -->
+            <button class="sidebar-close" aria-label="Close menu">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M25 7L7 25M7 7L25 25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <nav class="mobile-nav">
+                <a href="#about" class="mobile-nav-link">About.</a>
+                <a href="#projects" class="mobile-nav-link">Projects.</a>
+                <a href="#contact" class="mobile-nav-link mobile-nav-link-cta">Contact us</a>
+            </nav>
+        </div>
+
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay"></div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-image" id="heroImage">
+                <!-- Background image will be loaded from Supabase -->
+            </div>
+            <div class="hero-overlay">
+                <h1 class="hero-title">Where Creativity Meets Innovation.</h1>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="introduction">
+            <div class="container-narrow">
+                <div class="intro-header">
+                    <h2 class="intro-title">A Studio That Creates Powerful Experiences</h2>
+                    <div class="intro-divider"></div>
+                </div>
+
+                <div class="intro-content">
+                    <p>STONFILM is a production that sets a new standard in video production by expanding the boundaries between narrative and visual aspects with AI-based VFX technology.</p>
+
+                    <p>We go beyond simple video production to create immersive content by combining powerful storytelling, sensory mise-en-scène, and cutting-edge technology.</p>
+
+                    <p>We produce a variety of formats, including music videos, commercials (CFs), brand films, movies, and entertainment shows. We direct and plan videos so that they become tools for building a world, not just a simple promotional tool.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <!-- Section Title -->
+            <h2 class="section-title">Expand your Imagination with us.</h2>
+
+            <!-- Featured Video -->
+            <div class="featured-video">
+                <div class="featured-video-wrapper">
+                    <div class="featured-video-container">
+                        <!-- YouTube embed will be loaded here -->
+                    </div>
+                </div>
+                <!-- Video Info -->
+                <div class="featured-video-info">
+                    <div class="featured-video-title-wrapper">
+                        <h3 class="featured-video-title">Loading...</h3>
+                        <div class="featured-video-meta">
+                            <span class="featured-video-year">2024</span>
+                            <div class="featured-video-dot"></div>
+                            <span class="featured-video-category">Category</span>
+                        </div>
+                    </div>
+                    <p class="featured-video-description">Loading featured video description...</p>
+                </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="category-btn active" data-category="ALL">ALL.</button>
+                <button class="category-btn" data-category="CF">CF.</button>
+                <button class="category-btn" data-category="ENT">ENT.</button>
+                <button class="category-btn" data-category="MOVIE">MOVIE.</button>
+                <button class="category-btn" data-category="MUSICVIDEO">MUSICVIDEO.</button>
+                <button class="category-btn" data-category="SNAPSHOT">SNAPSHOT.</button>
+                <button class="category-btn" data-category="VFX">VFX.</button>
+                <button class="category-btn" data-category="ETC">ETC.</button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="masonry-grid-wrapper">
+                <div class="masonry-grid">
+                    <!-- Grid items will be dynamically loaded from Supabase -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="clients-section">
+        <div class="container">
+            <div class="clients-header">
+                <h2 class="section-title">Trusted by Our Partners & Clients.</h2>
+                <p class="section-subtitle">We've had the privilege of collaborating with industry-leading brands and creative visionaries. From global corporations to emerging artists, our partners trust us to bring their stories to life through compelling visual narratives.</p>
+            </div>
+        </div>
+
+        <!-- Logo Carousel (Full Width) -->
+        <div class="logo-carousel-wrapper">
+            <div class="logo-carousel">
+                <!-- Partner logos will be displayed here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2 class="section-title">Where Your Vision Becomes Reality.</h2>
+                <p class="section-subtitle">Every great project starts with a conversation. Share your ideas with us, and let's explore how we can craft compelling visual stories together. From initial concept to final delivery, we're here to turn your creative vision into reality.</p>
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Enter your company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-company">
+                <div class="footer-logo">STONFILM.</div>
+                <div class="footer-company-name">Stonfilm Production</div>
+            </div>
+
+            <div class="footer-info">
+                <p>CEO Junsu Song</p>
+                <p>14, Hancheon-ro 132-gil, Gangbuk-gu, Seoul, Republic of Korea</p>
+                <p>010-3470-5437</p>
+                <p><a href="mailto:song41@stonfilm.com">song41@stonfilm.com</a></p>
+            </div>
+
+            <div class="footer-copyright">
+                <p>©2025 Junsu Song</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Libraries -->
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Masonry.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+    <!-- Configuration & API -->
+    <script src="js/config.js"></script>
+    <script src="js/api/portfolio.js"></script>
+    <script src="js/api/settings.js"></script>
+    <script src="js/api/contact.js"></script>
+
+    <!-- Utilities -->
+    <script src="js/utils/aspect-ratio.js"></script>
+    <script src="js/utils/shuffle.js"></script>
+
+    <!-- Components -->
+    <script src="js/components/masonry-grid.js"></script>
+    <script src="js/components/category-filter.js"></script>
+    <script src="js/components/featured-video.js"></script>
+    <script src="js/components/logo-carousel.js"></script>
+    <script src="js/components/contact-form.js"></script>
+    <script src="js/components/mobile-menu.js"></script>
+
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* ==========================================
+   CSS Variables - FLOWWW Design System
+   Light/Dark Mode Support
+   ========================================== */
+
+:root {
+    /* ===== Light Mode (Default) ===== */
+
+    /* Neutral Colors - From Figma Variables */
+    --color-obj-00: #000000;      /* neutral/obj 00 - 가장 어두운 객체 */
+    --color-obj: #303136;         /* neutral/obj - 본문 텍스트 */
+    --color-obj-02: #636670;      /* neutral/obj 02 - 중간 객체 */
+    --color-mid: #a0a5b1;         /* neutral/mid - 비활성 텍스트 */
+    --color-sf-00: #ffffff;       /* neutral/sf 00 - 가장 밝은 표면 */
+    --color-sf-01: #EEF0F1;       /* neutral/sf 01 - 표면 레벨 1 */
+    --color-sf-03: #cbd0d6;       /* neutral/sf 03 - 표면 레벨 3 */
+
+    /* Semantic Colors - Mapped from Figma Variables */
+    --color-bg: var(--color-sf-00);
+    --color-text-primary: var(--color-obj-00);
+    --color-text-secondary: var(--color-obj);
+    --color-text-tertiary: var(--color-obj-02);
+    --color-text-muted: var(--color-mid);
+    --color-text-disabled: var(--color-sf-03);
+
+    /* Surface Colors */
+    --color-surface-primary: var(--color-sf-00);
+    --color-surface-secondary: var(--color-sf-01);
+    --color-surface-tertiary: var(--color-sf-03);
+
+    /* Border Colors */
+    --color-border: var(--color-sf-03);
+    --color-border-light: var(--color-sf-01);
+
+    /* Interactive Colors */
+    --color-hover: rgba(0, 0, 0, 0.05);
+    --color-active: rgba(0, 0, 0, 0.1);
+
+    /* Overlay */
+    --color-overlay: rgba(0, 0, 0, 0.4);
+    --color-overlay-strong: rgba(0, 0, 0, 0.6);
+
+    /* Spacing (8px base) */
+    --sp-0: 0px;
+    --sp-0-5: 4px;
+    --sp-1: 8px;
+    --sp-1-5: 12px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-5: 40px;
+    --sp-6: 48px;
+    --sp-8: 64px;
+    --sp-10: 80px;
+
+    /* Border Radius */
+    --radius-0: 0px;
+    --radius-1: 8px;
+    --radius-2: 16px;
+
+    /* Layout */
+    --max-width: 1200px;
+    --container-padding: 132px;
+    --content-width: 936px;
+    --section-padding-top: 48px;
+    --section-padding-bottom: 80px;
+
+    /* TopBar */
+    --topbar-height: 64px;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ===== Dark Mode ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Neutral Colors - From Figma Variables (Dark Mode) */
+        --color-obj-00: #ffffff;      /* neutral/obj 00 Dark */
+        --color-obj: #f6f6f7;         /* neutral/obj Dark */
+        --color-obj-02: #DFE3E6;      /* neutral/obj 02 Dark */
+        --color-mid: #a0a5b1;         /* neutral/mid - 동일 */
+        --color-sf-00: #000000;       /* neutral/sf 00 Dark */
+        --color-sf-01: #53555C;       /* neutral/sf 01 Dark */
+        --color-sf-03: #787b8a;       /* neutral/sf 03 Dark */
+
+        /* Interactive Colors */
+        --color-hover: rgba(255, 255, 255, 0.05);
+        --color-active: rgba(255, 255, 255, 0.1);
+
+        /* Overlay */
+        --color-overlay: rgba(0, 0, 0, 0.6);
+        --color-overlay-strong: rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* ===== Z-Index Layers ===== */
+:root {
+    --z-base: 0;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+}

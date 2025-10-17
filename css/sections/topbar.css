@@ -1,0 +1,309 @@
+/* ==========================================
+   TopBar / Navigation
+   ========================================== */
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--topbar-height);
+    background-color: transparent;
+    z-index: var(--z-sticky);
+    transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+/* Filled TopBar - Projects 섹션부터 적용 */
+.topbar.filled {
+    background-color: var(--color-sf-00);
+    box-shadow: 0 1px 0 var(--color-sf-01);
+}
+
+.topbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 16px 24px;
+    gap: 24px;
+}
+
+/* Logo */
+.logo {
+    color: #f6f6f7; /* About Hero에서는 밝은 텍스트 (하드코딩) */
+    font-size: 16px;
+    font-family: 'The Bold Font', sans-serif;
+    font-weight: 700;
+    letter-spacing: -2%;
+    transition: opacity var(--transition-fast), color var(--transition-normal);
+}
+
+.topbar.filled .logo {
+    color: var(--color-obj-00); /* Filled 상태에서는 CSS Variable 사용 */
+}
+
+.logo:hover {
+    opacity: 0.7;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-link {
+    color: #f6f6f7; /* About Hero에서는 밝은 텍스트 (하드코딩) */
+    font-size: 16px;
+    font-family: 'The Bold Font', sans-serif;
+    font-weight: 700;
+    letter-spacing: -2%;
+    transition: opacity var(--transition-fast), color var(--transition-normal);
+    padding: 8px 8px 4px 8px;
+}
+
+.topbar.filled .nav-link {
+    color: var(--color-obj); /* Filled 상태에서는 CSS Variable 사용 */
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+/* Contact CTA Button */
+.nav-link-cta {
+    background-color: transparent;
+    color: #ffffff; /* About Hero에서는 흰색 텍스트 (하드코딩) */
+    padding: 8px 12px 4px 12px;
+    border-radius: 8px;
+    transition: none; /* Disable all transitions from .nav-link */
+    position: relative;
+    z-index: 0;
+    opacity: 1; /* Override .nav-link opacity */
+}
+
+.topbar.filled .nav-link-cta {
+    color: var(--color-sf-00);
+}
+
+/* Override .nav-link:hover opacity */
+.nav-link-cta:hover {
+    opacity: 1;
+}
+
+/* Glow effect for CTA button */
+.nav-link-cta:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 8px;
+}
+
+.nav-link-cta:hover:before {
+    opacity: 1;
+}
+
+.nav-link-cta:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background-color var(--transition-normal);
+}
+
+/* Blank state hover: black background */
+.topbar:not(.filled) .nav-link-cta:hover:after {
+    background: #000000;
+}
+
+/* Filled state: solid background */
+.topbar.filled .nav-link-cta:after {
+    background: var(--color-obj-00);
+}
+
+/* Mobile Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: calc(var(--z-sticky) + 2);
+    position: relative;
+}
+
+.hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: #f6f6f7;
+    transition: background-color var(--transition-normal);
+}
+
+.topbar.filled .hamburger-line {
+    background-color: var(--color-obj-00);
+}
+
+/* Mobile Sidebar */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: auto;
+    min-width: 160px;
+    height: 100vh;
+    background-color: var(--color-sf-00);
+    z-index: calc(var(--z-sticky) + 2);
+    transition: right 0.3s ease-in-out;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.mobile-sidebar.active {
+    right: 0;
+}
+
+/* Sidebar Close Button */
+.sidebar-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    align-self: flex-end;
+    color: var(--color-obj-00);
+    transition: opacity var(--transition-fast);
+}
+
+.sidebar-close:hover {
+    opacity: 0.7;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.mobile-nav-link {
+    color: var(--color-obj-00);
+    font-size: 16px;
+    font-family: 'The Bold Font', sans-serif;
+    font-weight: 700;
+    letter-spacing: -2%;
+    padding: 8px 8px 4px 8px;
+    transition: opacity var(--transition-fast);
+    white-space: nowrap;
+}
+
+.mobile-nav-link:hover {
+    opacity: 0.7;
+}
+
+/* Mobile CTA Button */
+.mobile-nav-link-cta {
+    background-color: var(--color-obj-00);
+    color: var(--color-sf-00);
+    border-radius: 8px;
+    padding: 8px 12px 4px 12px;
+    position: relative;
+    z-index: 0;
+}
+
+.mobile-nav-link-cta:hover {
+    /* glow effect only, no other changes */
+}
+
+/* Glow effect for mobile CTA */
+.mobile-nav-link-cta:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 8px;
+}
+
+.mobile-nav-link-cta:hover:before {
+    opacity: 1;
+}
+
+.mobile-nav-link-cta:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--color-obj-00);
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    z-index: calc(var(--z-sticky) + 1);
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .topbar-content {
+        padding: 16px 16px;
+    }
+
+    /* Hide desktop nav, show mobile toggle */
+    .nav-desktop {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}

@@ -1,0 +1,123 @@
+/* ==========================================
+   About Section
+   ========================================== */
+
+.about-section {
+    padding: 0;
+}
+
+/* ===== Hero ===== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    /* margin-top 제거 - TopBar가 Hero 위에 overlay됨 */
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sp-4);
+}
+
+.hero-title {
+    max-width: 936px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(32px); /* 중앙에서 32px 아래로 이동 */
+}
+
+/* ===== Introduction ===== */
+.introduction {
+    padding: 32px 24px;
+    background-color: var(--color-sf-00);
+}
+
+.introduction .container-narrow {
+    max-width: 744px;
+    margin: 0 auto;
+}
+
+.intro-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.intro-title {
+    font-size: 24px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 600;
+    letter-spacing: -4%;
+    white-space: nowrap;
+    color: var(--color-obj-00);
+}
+
+.intro-divider {
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-obj-00);
+}
+
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.intro-content p {
+    font-size: 16px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -4%;
+    color: var(--color-obj);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        height: 300px; /* 모바일에서도 충분한 높이 확보 */
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .introduction {
+        padding: var(--sp-4) var(--sp-2);
+    }
+
+    .intro-content p {
+        font-size: 14px;
+    }
+
+    .intro-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .intro-title {
+        white-space: normal;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}

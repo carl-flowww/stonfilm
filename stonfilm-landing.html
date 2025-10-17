@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stonfilm - Projects</title>
+    <link href="https://fonts.cdnfonts.com/css/the-bold-font" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'The Bold Font', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: -0.04em;
+        }
+
+        /* 대표 영상 컨테이너 */
+        .featured-video {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto 60px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .featured-video .media-frame {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 고정 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .featured-video .media-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+        }
+
+        .featured-video:hover .media-frame iframe {
+            pointer-events: auto;
+        }
+
+        /* Masonry Grid */
+        .grid {
+            margin: 0 auto;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .grid-sizer {
+            width: calc(33.333% - 20px);
+        }
+
+        .grid-item {
+            width: calc(33.333% - 20px);
+            margin-bottom: 20px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* 반응형 */
+        @media (max-width: 1024px) {
+            .grid-sizer,
+            .grid-item {
+                width: calc(50% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-sizer,
+            .grid-item {
+                width: 100%;
+            }
+            h1 {
+                font-size: 36px;
+            }
+        }
+
+        /* 미디어 컨테이너 (영상과 이미지 공통) */
+        .media-wrapper {
+            position: relative;
+            width: 100%;
+            background: #000;
+        }
+
+        .media-frame {
+            position: relative;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .media-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+        }
+
+        .media-frame img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 호버 시 컨트롤 활성화 (영상만) */
+        .grid-item:hover .media-frame iframe {
+            pointer-events: auto;
+        }
+
+        /* 이미지 호버 효과 */
+        .media-frame img {
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover .media-frame img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PROJECTS.</h1>
+        
+        <!-- 대표 영상 -->
+        <div id="featuredVideo" class="featured-video">
+            <!-- 여기에 동적으로 대표 영상이 추가됩니다 -->
+        </div>
+        
+        <!-- Masonry 콜라주 그리드 -->
+        <div class="grid" id="videoGrid">
+            <!-- Grid Sizer for column width -->
+            <div class="grid-sizer"></div>
+            <!-- 여기에 동적으로 영상 아이템이 추가됩니다 -->
+        </div>
+    </div>
+
+    <!-- Masonry.js 라이브러리 (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    
+    <script>
+        // 포트폴리오 데이터 (나중에 DB에서 가져올 데이터)
+        const portfolioData = [
+            // CF 제작PD 포트폴리오
+            {
+                type: 'video',
+                videoId: 'OuRGKnMJpaI',
+                title: '컴투스 이수지 1',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'Yye2ar9sHsg',
+                title: '컴투스 이수지 2',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'kv0zuvwUqeU',
+                title: '컴투스 이수지 3',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            // MV 연출 포트폴리오
+            {
+                type: 'video',
+                videoId: '1MHuqesCz3s',
+                title: '뱀파이어호텔 - KillSwitch',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: '6NILzQ0hMF0',
+                title: '뱀파이어호텔 - The Sewing Machine',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            // 광고영상/브랜드필름
+            {
+                type: 'video',
+                videoId: 'XhAAvD_bmo4',
+                title: 'Ministry of Patriots and Veterans Affairs',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'ANRk61jJfAQ',
+                title: 'Zero Base One Trailer',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: '5pmctvN0euM',
+                title: 'Celestia music video',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'Ud2rJE1mx-Y',
+                title: 'Say My Name Trailer 1',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: '9gWpUwcJYFg',
+                title: 'Say My Name Trailer 2',
+                aspectRatio: '9:16',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'NIWc0ApWb00',
+                title: 'Say My Name Trailer 3',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'uHpgaKvk8ds',
+                title: 'Say My Name Trailer 4',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'D57wuQkSzRU',
+                title: 'Say My Name Trailer 5',
+                aspectRatio: '1:1',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'PaZlwnIRRcM',
+                title: 'Say My Name Trailer 6',
+                aspectRatio: '9:16',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'mb4m3-Rze9w',
+                title: 'Say My Name Trailer 7',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'sXJvf8NEGQA',
+                title: 'E-Mart Tae Live Clip',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: '4Z0G-WoPeIA',
+                title: 'Lotteria Chun Woo-hee CF 1',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'bwzsX4bmbWg',
+                title: 'Lotteria Chun Woo-hee CF 2',
+                aspectRatio: '9:16',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: '_RCl0Bki2PE',
+                title: 'Lotteria Chun Woo-hee CF 3',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'tNbeYN4g3y8',
+                title: 'Lotteria Chun Woo-hee CF 4',
+                aspectRatio: '1:1',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: 'KaNG5M0YetY',
+                title: 'World Vision Kim Hye-ja',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            {
+                type: 'video',
+                videoId: '_KlHfMHJEuY',
+                title: 'Gyeonggi Contents',
+                aspectRatio: '16:9',
+                startTime: 0
+            },
+            // Unsplash 이미지들
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=1200',
+                title: 'Studio Portrait',
+                aspectRatio: '814:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200',
+                title: 'Music Video',
+                aspectRatio: '811:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800',
+                title: 'Cinematic',
+                aspectRatio: '317:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800',
+                title: 'Film Production',
+                aspectRatio: '317:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1400',
+                title: 'Movie Scene',
+                aspectRatio: '951:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1509902967141-f5c0bb2b7417?w=900',
+                title: 'Fashion',
+                aspectRatio: '394:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200',
+                title: 'Studio',
+                aspectRatio: '595:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1496024840928-4c417adf211d?w=1200',
+                title: 'Commercial',
+                aspectRatio: '595:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1600',
+                title: 'Cinematic Wide',
+                aspectRatio: '1219:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=900',
+                title: 'Model',
+                aspectRatio: '406:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1520262494112-9fe481d36ec3?w=1100',
+                title: 'VFX',
+                aspectRatio: '522:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=1200',
+                title: 'Band',
+                aspectRatio: '539:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=1100',
+                title: 'Artist',
+                aspectRatio: '524:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=900',
+                title: 'Concert',
+                aspectRatio: '357:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1574169208507-84376144848b?w=1600',
+                title: 'Director',
+                aspectRatio: '1268:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1505022610485-0249ba5b3675?w=1400',
+                title: 'Product',
+                aspectRatio: '793:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=900',
+                title: 'Actor',
+                aspectRatio: '396:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900',
+                title: 'Dramatic',
+                aspectRatio: '396:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1400',
+                title: 'BTS',
+                aspectRatio: '951:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=800',
+                title: 'Editorial',
+                aspectRatio: '317:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800',
+                title: 'Model Shoot',
+                aspectRatio: '317:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200',
+                title: 'Tech',
+                aspectRatio: '595:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200',
+                title: 'Team',
+                aspectRatio: '595:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=900',
+                title: 'Creative',
+                aspectRatio: '394:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200',
+                title: 'Beauty',
+                aspectRatio: '814:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=1200',
+                title: 'Male Model',
+                aspectRatio: '811:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=1000',
+                title: 'Dance',
+                aspectRatio: '476:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000',
+                title: 'Crew',
+                aspectRatio: '476:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1300',
+                title: 'Session',
+                aspectRatio: '634:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1600',
+                title: 'Lighting',
+                aspectRatio: '1219:470'
+            },
+            {
+                type: 'image',
+                imageUrl: 'https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=900',
+                title: 'Editorial 2',
+                aspectRatio: '406:470'
+            }
+        ];
+
+        // 비율 문자열을 padding-bottom 퍼센트로 변환
+        function aspectRatioToPercent(ratio) {
+            const [width, height] = ratio.split(':').map(Number);
+            return (height / width * 100).toFixed(2);
+        }
+
+        // 배열 랜덤 섞기 (Fisher-Yates Shuffle)
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // 영상 아이템 생성 (iframe만)
+        function createVideoIframe(data) {
+            return `
+                <iframe
+                    src="https://www.youtube.com/embed/${data.videoId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&rel=0&loop=1&playlist=${data.videoId}&fs=0&iv_load_policy=3&disablekb=1&start=${data.startTime || 0}"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            `;
+        }
+
+        // 영상 아이템 생성
+        function createVideoItem(data) {
+            const paddingBottom = aspectRatioToPercent(data.aspectRatio);
+            
+            return `
+                <div class="media-wrapper">
+                    <div class="media-frame" style="padding-bottom: ${paddingBottom}%;">
+                        ${createVideoIframe(data)}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 이미지 아이템 생성
+        function createImageItem(data) {
+            const paddingBottom = aspectRatioToPercent(data.aspectRatio);
+            
+            return `
+                <div class="media-wrapper">
+                    <div class="media-frame" style="padding-bottom: ${paddingBottom}%;">
+                        <img src="${data.imageUrl}" alt="${data.title}">
+                    </div>
+                </div>
+            `;
+        }
+
+        // 미디어 아이템 생성 (타입에 따라 분기)
+        function createMediaItem(data) {
+            const item = document.createElement('div');
+            item.className = 'grid-item';
+            
+            if (data.type === 'video') {
+                item.innerHTML = createVideoItem(data);
+            } else if (data.type === 'image') {
+                item.innerHTML = createImageItem(data);
+            }
+            
+            return item;
+        }
+
+        // 페이지 로드 시 실행
+        window.addEventListener('load', function() {
+            const featuredContainer = document.getElementById('featuredVideo');
+            const grid = document.getElementById('videoGrid');
+            
+            // 16:9 비율의 영상만 필터링
+            const wideVideos = portfolioData.filter(item => 
+                item.type === 'video' && item.aspectRatio === '16:9'
+            );
+            
+            // 16:9 영상 중 랜덤하게 하나 선택 (대표 영상)
+            const featuredVideo = wideVideos[Math.floor(Math.random() * wideVideos.length)];
+            
+            // 대표 영상 표시
+            if (featuredVideo) {
+                featuredContainer.innerHTML = `
+                    <div class="media-frame">
+                        ${createVideoIframe(featuredVideo)}
+                    </div>
+                `;
+            }
+            
+            // 대표 영상을 제외한 나머지 데이터
+            const remainingData = portfolioData.filter(item => item !== featuredVideo);
+            
+            // 나머지 데이터를 랜덤하게 섞기
+            const shuffledData = shuffleArray(remainingData);
+            
+            // 디버깅: 이미지 개수 확인
+            const imageCount = shuffledData.filter(item => item.type === 'image').length;
+            const videoCount = shuffledData.filter(item => item.type === 'video').length;
+            console.log(`Total items: ${shuffledData.length}, Videos: ${videoCount}, Images: ${imageCount}`);
+            
+            // 모든 미디어 아이템 추가
+            shuffledData.forEach(data => {
+                const item = createMediaItem(data);
+                grid.appendChild(item);
+            });
+
+            // Masonry 초기화 (약간의 지연 후)
+            setTimeout(function() {
+                const msnry = new Masonry(grid, {
+                    itemSelector: '.grid-item',
+                    columnWidth: '.grid-sizer',
+                    gutter: 20,
+                    percentPosition: true,
+                    transitionDuration: '0.3s'
+                });
+
+                // 윈도우 리사이즈 시 Masonry 레이아웃 업데이트
+                window.addEventListener('resize', function() {
+                    msnry.layout();
+                });
+
+                // 이미지 로드 완료 후 레이아웃 재계산
+                const images = grid.querySelectorAll('img');
+                let loadedCount = 0;
+                images.forEach(img => {
+                    if (img.complete) {
+                        loadedCount++;
+                    } else {
+                        img.addEventListener('load', function() {
+                            loadedCount++;
+                            if (loadedCount === images.length) {
+                                msnry.layout();
+                            }
+                        });
+                    }
+                });
+
+                // iframe 로드 후 레이아웃 재계산
+                setTimeout(function() {
+                    msnry.layout();
+                }, 1000);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
