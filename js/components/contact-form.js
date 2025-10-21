@@ -215,41 +215,114 @@ class ContactForm {
      * Show general form error
      */
     showFormError(message) {
-        // Remove existing error/success messages
-        this.clearFormMessages();
-
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'form-error';
-        errorDiv.textContent = message;
-        errorDiv.style.textAlign = 'center';
-        errorDiv.style.marginTop = 'var(--sp-3)';
-        this.formElement.appendChild(errorDiv);
+        this.showPopup({
+            type: 'error',
+            title: 'Sending Failed',
+            content: `We're sorry, but there was an error sending your message. Please try again or contact us directly:\n\nEmail: song41@stonfilm.com\nPhone: 010-3470-5437`
+        });
     }
 
     /**
      * Show success message
      */
     showSuccess() {
-        // Remove existing error/success messages
-        this.clearFormMessages();
-
-        const successDiv = document.createElement('div');
-        successDiv.className = 'form-success';
-        successDiv.textContent = 'Thank you for your message! We will get back to you soon.';
-        this.formElement.appendChild(successDiv);
-
-        // Auto-hide after 5 seconds
-        setTimeout(() => {
-            successDiv.remove();
-        }, 5000);
+        this.showPopup({
+            type: 'success',
+            title: 'Sent Successfully!',
+            content: `Thank you for reaching out to us. Your message has been received and we'll get back to you as soon as possible.\n\nWe typically respond within 24-48 hours.`
+        });
     }
 
     /**
-     * Clear all form messages
+     * Show popup modal
      */
-    clearFormMessages() {
-        this.formElement.querySelectorAll('.form-success, .form-error:not(.form-group .form-error)').forEach(el => el.remove());
+    showPopup({ type, title, content }) {
+        // Remove existing popup if any
+        const existingPopup = document.querySelector('.popup-overlay');
+        if (existingPopup) {
+            existingPopup.remove();
+        }
+
+        // Create popup overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'popup-overlay';
+
+        // Create popup modal
+        const modal = document.createElement('div');
+        modal.className = 'popup-modal';
+
+        // Create popup header
+        const header = document.createElement('div');
+        header.className = 'popup-header';
+
+        // Create icon
+        const icon = document.createElement('div');
+        icon.className = `popup-icon ${type}`;
+
+        if (type === 'success') {
+            icon.innerHTML = `
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+        } else {
+            icon.innerHTML = `
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6V10M10 14H10.01M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+        }
+
+        // Create title
+        const titleEl = document.createElement('h3');
+        titleEl.className = 'popup-title';
+        titleEl.textContent = title;
+
+        header.appendChild(icon);
+        header.appendChild(titleEl);
+
+        // Create content
+        const contentEl = document.createElement('p');
+        contentEl.className = 'popup-content';
+        contentEl.textContent = content;
+
+        // Create actions
+        const actions = document.createElement('div');
+        actions.className = 'popup-actions';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'popup-btn';
+        closeBtn.textContent = 'Close';
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            setTimeout(() => overlay.remove(), 300);
+        });
+
+        actions.appendChild(closeBtn);
+
+        // Assemble modal
+        modal.appendChild(header);
+        modal.appendChild(contentEl);
+        modal.appendChild(actions);
+        overlay.appendChild(modal);
+
+        // Add to body
+        document.body.appendChild(overlay);
+
+        // Show popup with animation
+        requestAnimationFrame(() => {
+            overlay.classList.add('active');
+        });
+
+        // Close on overlay click
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                setTimeout(() => overlay.remove(), 300);
+            }
+        });
     }
+
 
     /**
      * Get form data
