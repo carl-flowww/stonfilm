@@ -21,6 +21,15 @@
     gap: 24px;
 }
 
+/* ===== Logo ===== */
+.footer-logo {
+    font-size: 16px;
+    font-family: 'The Bold Font', sans-serif;
+    font-weight: 700;
+    letter-spacing: -2%;
+    color: var(--color-sf-00);
+}
+
 /* ===== Contact Info ===== */
 .footer-info {
     display: flex;
