@@ -23,7 +23,6 @@ class LogoCarousel {
             '청년창업사관학교',
             'PHOS',
             '경기콘텐츠진흥원',
-            '크즈흐',
             'gimmick',
             '강원도',
             'Dierneas',
