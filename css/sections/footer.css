@@ -21,29 +21,6 @@
     gap: 24px;
 }
 
-/* ===== Company Info ===== */
-.footer-company {
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-}
-
-.footer-logo {
-    font-size: 16px;
-    font-family: 'The Bold Font', sans-serif;
-    font-weight: 700;
-    letter-spacing: -2%;
-    color: var(--color-sf-00);
-}
-
-.footer-company-name {
-    font-size: 16px;
-    font-family: 'Pretendard', sans-serif;
-    font-weight: 500;
-    letter-spacing: -4%;
-    color: var(--color-mid);
-}
-
 /* ===== Contact Info ===== */
 .footer-info {
     display: flex;
@@ -95,20 +72,6 @@
 
     .footer-content {
         gap: 20px;
-    }
-
-    .footer-company {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
-
-    .footer-logo {
-        font-size: 14px;
-    }
-
-    .footer-company-name {
-        font-size: 14px;
     }
 
     .footer-info p {
